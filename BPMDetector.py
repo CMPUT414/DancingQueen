@@ -5,6 +5,8 @@ from scipy import signal
 import pdb
 import matplotlib.pyplot as plt
 
+bpm_list =[]
+
 def read_wav(filename):
 
     #open file, get metadata for audio
@@ -43,6 +45,15 @@ def peak_detect(data):
     if len(peak_ndx[0]) == 0: #if nothing found then the max must be negative
         peak_ndx = numpy.where(data==-max_val)
     return peak_ndx
+
+def write_bpm_to_file():
+    global bpm_list
+    bpm_file = open("bpms.txt","w")
+    for bpm in bpm_list:
+        #print bpm
+        formatted_bpm = "{}{}".format(bpm,"\n")
+        bpm_file.write(formatted_bpm)
+
 
 def bpm_detector(data,fs):
     cA = []
@@ -96,7 +107,9 @@ def bpm_detector(data,fs):
 
     peak_ndx_adjusted = peak_ndx[0]+min_ndx;
     bpm = 60./ peak_ndx_adjusted * (fs/max_decimation)
-    print bpm
+    global bpm_list
+    bpm_list.append(bpm.item(0))
+    #print bpm
     return bpm,correl
 
 
@@ -138,7 +151,7 @@ if __name__ == '__main__':
         #iterate at the end of the loop
         samps_ndx = samps_ndx+window_samps;
         n=n+1; #counter for debug...
-
+    write_bpm_to_file()
     bpm = numpy.median(bpms)
     print 'Completed.  Estimated Beats Per Minute:', bpm
 
