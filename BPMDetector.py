@@ -1,3 +1,5 @@
+#Most of the code found at https://github.com/scaperot/the-BPM-detector-python
+
 #!/usr/bin/env python
 import wave, array, math, time, argparse, sys
 import numpy, pywt
@@ -155,8 +157,8 @@ if __name__ == '__main__':
     bpm = numpy.median(bpms)
     #print 'Completed.  Estimated Beats Per Minute:', bpm
 
-    n = range(0,len(correl))
-    plt.plot(n,abs(correl));
-    plt.show(False); #plot non-blocking
-    time.sleep(10);
-    plt.close();
+    #n = range(0,len(correl))
+    #plt.plot(n,abs(correl));
+    #plt.show(False); #plot non-blocking
+    #time.sleep(10);
+    #plt.close();
