@@ -153,7 +153,7 @@ if __name__ == '__main__':
         n=n+1; #counter for debug...
     write_bpm_to_file()
     bpm = numpy.median(bpms)
-    print 'Completed.  Estimated Beats Per Minute:', bpm
+    #print 'Completed.  Estimated Beats Per Minute:', bpm
 
     n = range(0,len(correl))
     plt.plot(n,abs(correl));
